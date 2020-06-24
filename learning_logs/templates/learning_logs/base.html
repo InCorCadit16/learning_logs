@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'learning_logs:index' %}"><h3>Learning Log</h3></a>
+        <a href="{% url 'learning_logs:topics' %}"><h3>Topics</h3></a>
+
+        {% if user.is_authenticated %}
+            <p>Hello {{ user.username }}</p>
+            <a href="{% url 'users:logout' %}">Log out</a>
+        {% else %}
+            <a href="{% url 'users:register' %}">Register</a>
+            <br>
+            <a href="{% url 'users:login' %}">Log in</a>
+        {% endif %}
+    </div>
+
+
+    {% block content %}{% endblock content %}
+</body>
+</html>
